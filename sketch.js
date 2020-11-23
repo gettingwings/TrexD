@@ -78,7 +78,7 @@ function setup() {
 
 function draw() {
   
-  background("azure");
+  background("lightpink");
 
   text("Score: "+ score, width-70,50);
   if(score>0 && score%200==0){
