@@ -78,7 +78,7 @@ function setup() {
 
 function draw() {
   
-  background("lightpink");
+  background("lightblue");
 
   text("Score: "+ score, width-70,50);
   if(score>0 && score%200==0){
@@ -92,7 +92,7 @@ function draw() {
     if((touches.length>0||keyDown("space")) && trex.y>height-43) {
       trex.velocityY = -12;
       jump.play();
-      touches=[ ];
+      touches = [ ];
     }
   
     trex.velocityY = trex.velocityY + 0.8
