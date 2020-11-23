@@ -81,12 +81,13 @@ function draw() {
   background("lightblue");
 
   text("Score: "+ score, width-70,50);
-  if(score>0 && score%200==0){
-    ckeckPoint.play();
-  }
+  
   
   if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
+    if(score>0 && score%200==0){
+      ckeckPoint.play();
+    }
     ground.velocityX = -(6 + 3*score/100);
   
     if((touches.length>0||keyDown("space")) && trex.y>height-43) {
