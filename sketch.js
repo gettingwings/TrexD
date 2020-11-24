@@ -78,7 +78,7 @@ function setup() {
 
 function draw() {
   
-  background("lightblue");
+  background("red");
 
   text("Score: "+ score, width-70,50);
   
