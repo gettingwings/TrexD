@@ -1,5 +1,4 @@
 
-
 var PLAY = 1;
 var END = 0;
 var gameState = PLAY;
@@ -129,7 +128,8 @@ function draw() {
     obstaclesGroup.setLifetimeEach(-1);
     cloudsGroup.setLifetimeEach(-1);
     
-    if(mousePressedOver(restart))} // || mouseIsPressed ) {
+    if(mousePressedOver(restart)){
+      // || mouseIsPressed ) {
       reset();
     }
   if(touches.length>0){
@@ -220,7 +220,11 @@ function reset(){
 function touchScreen(){
   
   for(var i=0; i<touches.length; i++){
-    if(touches[i].x>restart.x-restart.width/2 && touches[i].x<restart.x+restart.width/2   && touches[i].y>restart.y-restart.height/2 && touches[i].y<restart.y+restart.height/2)
+    
+    if(touches[i].x>restart.x-restart.width/2 && touches[i].x<restart.x+restart.width/2   && touches[i].y>restart.y-restart.height/2 && touches[i].y<restart.y+restart.height/2)  {
+      reset();
+      touches = [];
+    }
   }
-  reset()
+  
 }
