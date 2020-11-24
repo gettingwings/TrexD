@@ -1,4 +1,5 @@
 
+
 var PLAY = 1;
 var END = 0;
 var gameState = PLAY;
@@ -78,21 +79,21 @@ function setup() {
 
 function draw() {
   
-  background("orange");
+  background(255);
 
   text("Score: "+ score, width-70,50);
-  
+  if(score>0 && score%200==0){
+    ckeckPoint.play();
+  }
   
   if (gameState===PLAY){
     score = score + Math.round(getFrameRate()/60);
-    if(score>0 && score%200==0){
-      ckeckPoint.play();
-    }
     ground.velocityX = -(6 + 3*score/100);
   
-    if((touches.length>0||keyDown("space")) && trex.y>height-43) {
+    if(( touches.length>0 || keyDown("space") ) && trex.y>height-43) {
       trex.velocityY = -12;
       jump.play();
+      
       touches = [ ];
     }
   
@@ -128,10 +129,15 @@ function draw() {
     obstaclesGroup.setLifetimeEach(-1);
     cloudsGroup.setLifetimeEach(-1);
     
-    if(mousePressedOver(restart) ) {
+    if(mousePressedOver(restart))} // || mouseIsPressed ) {
       reset();
     }
+  if(touches.length>0){
+    touchScreen();
   }
+    
+    
+  }// end of else
   
   
   drawSprites();
@@ -208,4 +214,13 @@ function reset(){
   
   score = 0;
   
+}
+
+
+function touchScreen(){
+  
+  for(var i=0; i<touches.length; i++){
+    if(touches[i].x>restart.x-restart.width/2 && touches[i].x<restart.x+restart.width/2   && touches[i].y>restart.y-restart.height/2 && touches[i].y<restart.y+restart.height/2)
+  }
+  reset()
 }
