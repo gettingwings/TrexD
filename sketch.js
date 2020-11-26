@@ -41,13 +41,12 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(windowWidth,windowHeight);
+  createCanvas(windowWidth,windowHeight/2);
   
-  trex = createSprite(70,windowHeight-40,20,50);
+  trex = createSprite(70,height-40,20,50);
   trex.addAnimation("running", trex_running);
   trex.addAnimation("collided", trex_collided);
   trex.scale = 0.5;
-  
   
   ground = createSprite(width/2,height-20,width/2,20);
   ground.addImage("ground",groundImage);
@@ -80,7 +79,8 @@ function draw() {
   
   background(255);
 
-  text("Score: "+ score, width-70,50);
+  text("Score: "+ score, width-80,60);
+  text("Highest Score: "+ localStorage["HighestScore"], width-110, 30);
   if(score>0 && score%200==0){
     ckeckPoint.play();
   }
@@ -89,7 +89,7 @@ function draw() {
     score = score + Math.round(getFrameRate()/60);
     ground.velocityX = -(6 + 3*score/100);
   
-    if( touches.length>0 || keyDown("space") ) {
+    if(( touches.length>0 || keyDown("space") ) && trex.y>height-40) {
       trex.velocityY = -12;
       jump.play();
       
@@ -121,15 +121,12 @@ function draw() {
     obstaclesGroup.setVelocityXEach(0);
     cloudsGroup.setVelocityXEach(0);
     
-    //change the trex animation
     trex.changeAnimation("collided",trex_collided);
     
-    //set lifetime of the game objects so that they are never destroyed
     obstaclesGroup.setLifetimeEach(-1);
     cloudsGroup.setLifetimeEach(-1);
     
     if(mousePressedOver(restart)){
-      // || mouseIsPressed ) {
       reset();
     }
   if(touches.length>0){
@@ -147,7 +144,7 @@ function spawnClouds() {
   //write code here to spawn the clouds
   if (frameCount % 80 === 0) {
     var cloud = createSprite(width,120,40,10);
-    cloud.y = Math.round(random(height-300,height-200));
+    cloud.y = Math.round(random(height-250,height-150));
     cloud.addImage(cloudImage);
     cloud.scale = 0.5;
     cloud.velocityX = -3;
@@ -208,10 +205,9 @@ function reset(){
   trex.changeAnimation("running",trex_running);
   
   if(localStorage["HighestScore"]<score){
-    localStorage["HighestScore"] = score;
+      localStorage["HighestScore"] = score;
+      text("New High Score: "+ localStorage["HighestScore"], 100, 100);
   }
-  console.log(localStorage["HighestScore"]);
-  
   score = 0;
   
 }
