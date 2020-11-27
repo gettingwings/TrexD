@@ -41,7 +41,7 @@ function preload(){
 }
 
 function setup() {
-  createCanvas(windowWidth,windowHeight/2);
+  createCanvas(windowWidth,windowHeight);
   
   trex = createSprite(70,height-40,20,50);
   trex.addAnimation("running", trex_running);
@@ -77,7 +77,7 @@ function setup() {
 
 function draw() {
   
-  background("pink");//harshit
+  background("pink");
 
   text("Score: "+ score, width-80,60);
   text("Highest Score: "+ localStorage["HighestScore"], width-110, 30);
