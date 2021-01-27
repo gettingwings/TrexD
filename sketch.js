@@ -126,12 +126,15 @@ function draw() {
     obstaclesGroup.setLifetimeEach(-1);
     cloudsGroup.setLifetimeEach(-1);
     
+    // to call restart function
     if(mousePressedOver(restart)){
       reset();
     }
-  if(touches.length>0){
-    touchScreen();
-  }
+    
+    // to check if restart is touched
+    if(touches.length>0){
+      touchScreen();
+    }
     
     
   }// end of else
@@ -212,7 +215,7 @@ function reset(){
   
 }
 
-
+// to check if touch is within the restart function
 function touchScreen(){
   
   for(var i=0; i<touches.length; i++){
