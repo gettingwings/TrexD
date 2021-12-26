@@ -117,7 +117,7 @@ function draw() {
     
     //set velcity of each game object to 0
     ground.velocityX = 0;
-    trex.velocityY = 0;
+    trex.velocityY = 0.1;
     obstaclesGroup.setVelocityXEach(0);
     cloudsGroup.setVelocityXEach(0);
     
