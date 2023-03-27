@@ -92,7 +92,6 @@ function draw() {
     if(( touches.length>0 || keyDown("space") ) && trex.y>height-50) {
       trex.velocityY = -12;
       jump.play();
-      
       touches = [ ];
     }
   
@@ -127,8 +126,9 @@ function draw() {
     cloudsGroup.setLifetimeEach(-1);
     
     // to call restart function
-    if(mousePressedOver(restart)){
+    if(mousePressedOver(restart) || touches.length>0){
       reset();
+      touches=[];
     }
     
     // to check if restart is touched
