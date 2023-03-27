@@ -101,7 +101,7 @@ function draw() {
       ground.x = ground.width/2;
     }
   
-    trex.collide(invisibleGround);
+  
     spawnClouds();
     spawnObstacles();
   
@@ -139,7 +139,7 @@ function draw() {
     
   }// end of else
   
-  
+  trex.collide(invisibleGround);
   drawSprites();
 }
 
