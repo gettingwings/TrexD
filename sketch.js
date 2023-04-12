@@ -15,7 +15,8 @@ var score=0;
 
 var gameOver, restart;
 
-localStorage["HighestScore"] = 0;
+if (!localStorage["HighestScore"])
+  localStorage["HighestScore"]= 0;
 
 function preload(){
   trex_running =   loadAnimation("trex1.png","trex3.png","trex4.png");
@@ -71,12 +72,9 @@ function setup() {
   
   cloudsGroup = new Group();
   obstaclesGroup = new Group();
-  
-  score = 0;
 }
 
 function draw() {
-  
   background("pink");
 
   text("Score: "+ score, width-80,60);
@@ -129,14 +127,7 @@ function draw() {
     if(mousePressedOver(restart) || touches.length>0){
       reset();
       touches=[];
-    }
-    
-    // to check if restart is touched
-    if(touches.length>0){
-      touchScreen();
-    }
-    
-    
+    } 
   }// end of else
   
   trex.collide(invisibleGround);
@@ -212,18 +203,4 @@ function reset(){
       text("New High Score: "+ localStorage["HighestScore"], 100, 100);
   }
   score = 0;
-  
-}
-
-// to check if touch is within the restart function
-function touchScreen(){
-  
-  for(var i=0; i<touches.length; i++){
-    
-    if(touches[i].x>restart.x-restart.width/2 && touches[i].x<restart.x+restart.width/2   && touches[i].y>restart.y-restart.height/2 && touches[i].y<restart.y+restart.height/2)  {
-      reset();
-      touches = [];
-    }
-  }
-  
 }
